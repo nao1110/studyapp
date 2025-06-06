@@ -1,0 +1,360 @@
+/* ベーススタイル: 全体のフォント、背景、基本配置 */
+body {
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* モダンで読みやすいフォント */
+    background-color: #f0f2f5; /* 落ち着いたオフホワイトの背景 */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 上部に配置 */
+    min-height: 100vh; /* 画面全体の高さ */
+    margin: 0;
+    padding: 30px 20px; /* 上下にゆとりを持たせる */
+    box-sizing: border-box; /* パディングとボーダーを幅に含める */
+    color: #34495e; /* 基本の文字色 */
+}
+
+/* アプリ全体のコンテナ */
+.container {
+    background-color: #ffffff; /* 白いカード背景 */
+    padding: 35px 40px; /* 内側のゆとりを多めに */
+    border-radius: 12px; /* 柔らかな角丸 */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* 深みのある影 */
+    width: 100%;
+    max-width: 850px; /* 少し広めに */
+    box-sizing: border-box;
+}
+
+/* タイトルとセクション見出し */
+h1 {
+    font-size: 2.2em; /* 大きめのタイトル */
+    font-weight: 700; /* 太字 */
+    color: #2c3e50; /* より濃いタイトル色 */
+    text-align: center;
+    margin-bottom: 35px; /* 下に大きな余白 */
+    letter-spacing: 0.05em; /* 文字間を少し開ける */
+}
+
+h2 {
+    font-size: 1.6em;
+    font-weight: 600; /* やや太字 */
+    color: #4a6c89; /* セクション見出しの色 */
+    text-align: center;
+    margin-top: 40px; /* 上にゆとり */
+    margin-bottom: 25px; /* 下にゆとり */
+    position: relative; /* 下線のために配置 */
+}
+
+h2::after { /* 見出しの下線（装飾） */
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px; /* 見出しからの距離 */
+    width: 60px; /* 短めの線 */
+    height: 3px;
+    background-color: #007bff; /* メインカラー */
+    border-radius: 2px;
+}
+
+/* 各入力セクションの共通スタイル */
+.input-section {
+    background-color: #fbfdff; /* 薄い青みがかった背景 */
+    border: 1px solid #e0e9f0; /* 薄いボーダー */
+    border-radius: 10px; /* 角丸 */
+    padding: 25px; /* 内側のゆとり */
+    margin-bottom: 35px; /* 下に余白 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* 軽い影 */
+}
+
+/* 入力グループ（ラベルとフォーム要素） */
+.input-group {
+    margin-bottom: 20px; /* 下にゆとり */
+}
+
+.input-group label {
+    display: block; /* ブロック要素にして縦並び */
+    margin-bottom: 8px; /* ラベルと入力欄の間のゆとり */
+    font-weight: 500; /* やや細めの太字 */
+    color: #5d7a96; /* ラベルの色 */
+    font-size: 0.95em;
+}
+
+/* フォーム要素共通スタイル */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
+    width: calc(100% - 24px); /* パディングとボーダーを考慮した幅 */
+    padding: 12px; /* ゆとりあるパディング */
+    border: 1px solid #c7d9e8; /* 柔らかな枠線 */
+    border-radius: 6px; /* 柔らかな角丸 */
+    font-size: 1em; /* 文字サイズ */
+    color: #34495e; /* 入力文字色 */
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* ホバー・フォーカス時のアニメーション */
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder,
+textarea::placeholder {
+    color: #aebacd; /* プレースホルダーの色 */
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #007bff; /* フォーカス時のメインカラー */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* 柔らかなハイライト */
+    outline: none; /* デフォルトのアウトラインを削除 */
+}
+
+textarea {
+    min-height: 100px; /* テキストエリアの最小高さを少し上げる */
+    resize: vertical; /* 縦方向のみリサイズ可能 */
+}
+
+/* メッセージ表示エリア */
+.message {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    opacity: 0; /* 最初は非表示 */
+    transition: opacity 0.3s ease; /* フェードイン/アウト */
+}
+.message.active {
+    opacity: 1; /* 表示時にフェードイン */
+}
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* ボタン共通スタイル */
+button {
+    background-color: #007bff; /* メインカラーの青 */
+    color: white;
+    padding: 12px 28px; /* ゆとりあるパディング */
+    border: none;
+    border-radius: 6px; /* 柔らかな角丸 */
+    cursor: pointer;
+    font-size: 1.05em;
+    font-weight: 600; /* 少し太字 */
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+    margin-right: 15px; /* ボタン間の余白 */
+    margin-top: 15px; /* 上にゆとり */
+    letter-spacing: 0.03em; /* 文字間を少し開ける */
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2); /* ボタンにも影 */
+}
+
+button:hover {
+    background-color: #0056b3; /* ホバー時に少し濃く */
+    transform: translateY(-2px); /* 少し上に浮き上がる */
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3); /* 影も深める */
+}
+
+button:active {
+    transform: translateY(0); /* クリック時に元に戻る */
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+}
+
+/* クリアボタンの色 */
+.input-section button[id^="clear"] { /* IDが"clear"で始まるボタンに適用 */
+    background-color: #6c757d; /* 落ち着いたグレー */
+    box-shadow: 0 4px 10px rgba(108, 117, 125, 0.2);
+}
+.input-section button[id^="clear"]:hover {
+    background-color: #5a6268;
+    box-shadow: 0 6px 15px rgba(108, 117, 125, 0.3);
+}
+
+/* 区切り線 */
+hr {
+    border: 0;
+    border-top: 1px solid #e0e9f0; /* 薄い線 */
+    margin: 45px 0; /* 上下により大きな余白 */
+}
+
+/* 進捗表示セクション */
+.progress-section {
+    background-color: #fbfdff;
+    border: 1px solid #e0e9f0;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 35px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+#overallProgress p {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.subject-progress-item {
+    background-color: #ffffff; /* 白い背景 */
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* 軽い影 */
+    transition: transform 0.2s ease; /* ホバーアニメーション */
+}
+
+.subject-progress-item:hover {
+    transform: translateY(-3px); /* 軽く浮き上がる */
+}
+
+.subject-progress-item span {
+    color: #34495e;
+    font-size: 1.05em;
+    flex-shrink: 0; /* 縮まない */
+}
+
+.subject-progress-item .progress-bar {
+    flex-grow: 1; /* 残りスペースを埋める */
+    height: 12px; /* バーの高さ */
+    background-color: #e0e9f0; /* バーの背景色 */
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 0 20px; /* テキストとの間隔 */
+}
+
+.subject-progress-item .progress-fill {
+    height: 100%;
+    background-color: #28a745; /* 進捗バーの色（緑） */
+    border-radius: 6px;
+    width: 0%; /* JSで設定 */
+    transition: width 0.6s ease-out; /* 幅変化のアニメーションを滑らかに */
+}
+
+.subject-progress-item .progress-text {
+    font-size: 1em;
+    font-weight: 700;
+    color: #28a745; /* 進捗パーセンテージの色 */
+    min-width: 55px; /* レイアウト崩れ防止 */
+    text-align: right;
+    letter-spacing: 0.02em;
+}
+
+/* 学習履歴セクション */
+.history-section {
+    background-color: #fbfdff;
+    border: 1px solid #e0e9f0;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+#filterSubject {
+    margin-bottom: 25px; /* 履歴リストとの間隔 */
+    display: block; /* 全幅を使う */
+    width: calc(100% - 24px); /* 親要素のパディングを考慮 */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#studyHistoryList {
+    list-style: none;
+    padding: 0;
+}
+
+#studyHistoryList li {
+    background-color: #ffffff;
+    padding: 18px 20px;
+    border: 1px solid #e0e9f0;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column; /* 要素を縦に並べる */
+    gap: 8px; /* 要素間の隙間 */
+    word-wrap: break-word;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    transition: transform 0.2s ease;
+}
+
+#studyHistoryList li:hover {
+    transform: translateY(-2px); /* 軽く浮き上がる */
+}
+
+#studyHistoryList li p {
+    margin: 0; /* デフォルトのマージンを削除 */
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+#studyHistoryList li strong {
+    color: #34495e;
+    font-weight: 600;
+}
+
+#studyHistoryList li span {
+    color: #5d7a96;
+}
+
+/* 編集・削除ボタンのグループ */
+.record-actions {
+    position: absolute;
+    top: 15px; /* 上からの位置 */
+    right: 15px; /* 右からの位置 */
+    display: flex;
+    gap: 10px; /* ボタン間の隙間 */
+}
+
+.record-actions button {
+    padding: 8px 14px; /* ボタンのサイズを調整 */
+    font-size: 0.8em; /* 小さな文字サイズ */
+    margin-top: 0; /* デフォルトマージンをリセット */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.record-actions .edit-btn {
+    background-color: #28a745; /* 緑 */
+}
+.record-actions .edit-btn:hover {
+    background-color: #218838;
+}
+
+.record-actions .delete-btn {
+    background-color: #dc3545; /* 赤 */
+}
+.record-actions .delete-btn:hover {
+    background-color: #c82333;
+}
+
+
+/* レスポンシブデザイン（画面幅が狭い場合） */
+@media (max-width: 768px) {
+    .container {
+        padding: 25px; /* パディングを少し減らす */
+    }
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+    }
+    h2 {
+        font-size: 1.4em;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    h2::after {
+        bottom: -8px;
+        width: 50px;
+        height: 2px;
+    }
+    .input-section {
+        padding: 20px

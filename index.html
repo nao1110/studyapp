@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社会人の学習時間記録アプリ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>学習時間記録アプリ</h1>
+
+        <div class="input-section study-goal-section">
+            <h2>学習内容と目標設定</h2>
+            <div class="input-group">
+                <label for="studySubject">学習内容/資格名:</label>
+                <input type="text" id="studySubject" placeholder="例: JavaScript, TOEIC, 簿記2級">
+            </div>
+            <div class="input-group">
+                <label for="targetHours">目標学習時間 (時間):</label>
+                <input type="number" id="targetHours" min="0" step="0.5" placeholder="例: 100">
+            </div>
+            <button id="addStudySubjectBtn">学習内容を追加/更新</button>
+            <button id="clearGoalInputBtn">クリア</button>
+            <div id="subjectMessage" class="message"></div>
+        </div>
+
+        <hr>
+
+        <div class="input-section daily-record-section">
+            <h2>日々の学習記録</h2>
+            <div class="input-group">
+                <label for="currentStudySubject">学習内容を選択:</label>
+                <select id="currentStudySubject">
+                    <option value="">--選択してください--</option>
+                    </select>
+            </div>
+            <div class="input-group">
+                <label for="studyDate">学習日:</label>
+                <input type="date" id="studyDate">
+            </div>
+            <div class="input-group">
+                <label for="studyTime">学習時間 (時間):</label>
+                <input type="number" id="studyTime" min="0" step="0.25" placeholder="例: 1.5">
+            </div>
+            <div class="input-group">
+                <label for="studyNotes">学習メモ:</label>
+                <textarea id="studyNotes" placeholder="今日学んだこと、気づき、反省点など"></textarea>
+            </div>
+            <button id="recordStudyBtn">学習を記録</button>
+            <button id="clearRecordInputBtn">クリア</button>
+            <div id="recordMessage" class="message"></div>
+        </div>
+
+        <hr>
+
+        <div class="progress-section">
+            <h2>学習進捗</h2>
+            <div id="overallProgress">
+                </div>
+            <div id="subjectProgressList">
+                </div>
+        </div>
+
+        <hr>
+
+        <div class="history-section">
+            <h2>学習履歴</h2>
+            <div class="input-group">
+                <label for="filterSubject">学習内容で絞り込む:</label>
+                <select id="filterSubject">
+                    <option value="">--すべて--</option>
+                    </select>
+            </div>
+            <ul id="studyHistoryList">
+                </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
